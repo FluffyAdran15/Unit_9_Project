@@ -19,12 +19,18 @@
    <title>Spice Bowl Payment Form</title>
    <link href="sb_reset.css" rel="stylesheet" />
    <link href="sb_styles.css" rel="stylesheet" />
+   <link rel="stylesheet" href="sb_forms.css">
+   <link rel="stylesheet" href="sb_validate.css">
+   <script src="sb_script.js"></script>
 </head>
 
 <body>
    <header>
       <img src="sb_logo.png" alt="The Spice Bowl" />
-
+      <form action="http://www.example.com/sb/login" method="POST" id="login">
+         <input type="text" id="userBox" name="username" placeholder="username">
+         <input type="text" id="pwdBox" name="password" placeholder="password">
+      </form>
       <nav> <a id="navicon" href="#"><img src="sb_navicon.png" alt="" /></a>
          <ul>
             <li><a href="#">Spices</a></li>
@@ -38,7 +44,144 @@
    
    <section>
       <h1>Payment Form</h1>
+ <form action="http://www.example.com/sb/payment" method="POST" id="payment">
+      <fieldset id="billing">
+         <legend>Billing Information (Required)</legend>
+         <label for="firstBox">First Name*</label>
+         <input type="text" name="fName" id="firstBox" required>
+   
+         <label for="lastBox">Last Name*</label>
+         <input type="" name="lName" id="lastBox" required>
+
+         <label for="streetBox">Street Address*</label>
+         <input type="text" name="street" id="streetBox" required>
+
+         <label for="streetBox2">Street Address (2)</label>
+         <input type="text" name="street2" id="streetBox2">
+
+         <label for="cityBox">City*</label>
+         <input type="text" name="city" id="cityBox" required>
+
+         <label for="stateBox">State*</label>
+         <input type="text" name="state" required id="stateBox" list="stateList" maxlength="2">
+
+         <label for="zipBox">Zip/Postal Code</label>
+         <input type="text" name="zip" id="zipBox" pattern="^\d{5}(-\d{4})?$">
+
+         <label for="countryBox">Country*</label>
+         <input type="text" name="country" id="countryBox" value="United States" required>
+
+         <label for="phoneBox">Phone*</label>
+         <input type="tel" name="phone" id="phoneBox" required 
+         pattern="^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$">
+
+      <datalist id="stateList">
+         <option value="AL"></option>
+         <option value="AK"></option>
+         <option value="AZ"></option>
+         <option value="AR"></option>
+         <option value="CA"></option>
+         <option value="CO"></option>
+         <option value="CT"></option>
+         <option value="DE"></option>
+         <option value="FL"></option>
+         <option value="GA"></option>
+         <option value="HI"></option>
+         <option value="ID"></option>
+         <option value="IL"></option>
+         <option value="IN"></option>
+         <option value="IA"></option>
+         <option value="KS"></option>
+         <option value="KY"></option>
+         <option value="LA"></option>
+         <option value="ME"></option>
+         <option value="MD"></option>
+         <option value="MA"></option>
+         <option value="MI"></option>
+         <option value="MN"></option>
+         <option value="MS"></option>
+         <option value="MO"></option>
+         <option value="MT"></option>
+         <option value="NE"></option>
+         <option value="NV"></option>
+         <option value="NH"></option>
+         <option value="NJ"></option>
+         <option value="NM"></option>
+         <option value="NY"></option>
+         <option value="NC"></option>
+         <option value="ND"></option>
+         <option value="OH"></option>
+         <option value="OK"></option>
+         <option value="OR"></option>
+         <option value="PA"></option>
+         <option value="RI"></option>
+         <option value="SC"></option>
+         <option value="SD"></option>
+         <option value="TN"></option>
+         <option value="TX"></option>
+         <option value="UT"></option>
+         <option value="VT"></option>
+         <option value="VA"></option>
+         <option value="WA"></option>
+         <option value="WV"></option>
+         <option value="WI"></option>
+         <option value="WY"></option>
+</datalist>
+
+      </fieldset>
+      <fieldset id="creditCard">
+         <legend>Credit Card (Required)</legend>
+         <fieldset>
+            <label class="cardLabel">
+               <input type="radio" name="cCard" required value="Amex"/>
+               <img src="sb_amex.png" alt="amex">
+            </label>
+            <label class="cardLabel">
+              <input type="radio" name="cCard" required value="Discover"/>
+              <img src="sb_discover.png" alt="Discover">
+               </label>
+               <label class="cardLabel">
+               <input type="radio" name="cCard" required value="Master"/>
+               <img src="sb_master.png" alt="Master">
+             </label>
+            <label class="cardLabel">
+             <input type="radio" name="cCard" required value="Visa"/>
+             <img src="sb_visa.png" alt="Visa">
+             </label>
+         </fieldset>
       
+      <label for="cardBox">Credit Card Number</label>
+      <input type="text" name="cardNumber" required  id="cardBox"
+      pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$">
+
+      <label for="monthList">Expiration Date</label>
+       <select id="monthList" required name="cardMonth">
+          <option selected>--Month--</option>
+          <option value="1">January (1)</option>
+          <option value="2">February (2)</option>
+          <option value="3">March (3)</option>
+          <option value="4">April (4)</option>
+          <option value="5">May (5)</option>
+          <option value="6">June (6)</option>
+          <option value="7">July (7)</option>
+          <option value="8">August (8)</option>
+          <option value="9">September (9)</option>
+          <option value="10">October (10)</option>
+          <option value="11">November (11)</option>
+          <option value="12">December (12)</option>
+       </select>
+       <select id="yearList" required name="cardYear">
+            <option selected>--Year--</option>
+            <option value="2017"> 2017</option>
+            <option value="2018"> 2018</option>
+            <option value="2019"> 2019</option>
+            <option value="2020"> 2020</option>
+         </select>
+         <label for="cscBox">CSC</label>
+         <input type="text" required name="csc" id="cscBox" pattern="^\d{3}$" maxlength="3" placeholder="nnn">
+   </fieldset>
+      <button type="submit"><img src="sb_button.png" alt="Next"></button>
+ </form>
       <aside>
          <h1>Menu Ideas</h1>
          <h2>Salt-Roasted Pecans</h2>
@@ -68,7 +211,7 @@
             8 hours (turn half-way through).
          </p>
       </aside>
-      
+      <form action=""></form>
    </section>
 
    <footer>
